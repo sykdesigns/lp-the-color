@@ -459,10 +459,6 @@ header a:hover {
     line-height: 28px;
 }
 
-.footer-nav a:hover {
-    color: yellow;
-}
-
 .nav1 {
     grid-column: 2;
     display: flex;
