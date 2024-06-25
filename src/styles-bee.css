@@ -1,0 +1,163 @@
+@media screen and (min-width: 1024px) {
+
+#bee-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* Full height */
+    overflow: hidden; /* Hide overflow to keep bees within the viewport */
+    z-index: 999; /* Ensure it is below other content */
+    pointer-events: none; /* Allow clicks to pass through to other elements */
+}
+
+.bee {
+    position: absolute;
+    width: 25px; /* Adjust size as needed */
+    height: 42px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: buzz 5s infinite linear; /* Adjust duration for a more erratic feel */
+}
+
+.bee1 {
+    background-image: url('../assets/bee1.png');
+    width: 100px; /* Adjust size as needed */
+    height: 56.25px;
+
+}
+
+.bee2 {
+    background-image: url('../assets/bee2.png');
+    width: 123px; /* Adjust size as needed */
+    height: 92.25px;
+
+}
+
+.bee3 {
+    background-image: url('../assets/bee3.png');
+    width: 112px; /* Adjust size as needed */
+    height: 84px;
+  
+}
+
+@keyframes buzz {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    4% {
+        transform: translate(var(--tx1), var(--ty1)) rotate(30deg);
+    }
+    7.5% {
+        transform: translate(var(--tx2), var(--ty2)) rotate(-30deg);
+    }
+    14% {
+        transform: translate(var(--tx3), var(--ty3)) rotate(45deg);
+    }
+    19% {
+        transform: translate(var(--tx4), var(--ty4)) rotate(-45deg);
+    }
+    100% {
+        transform: translate(var(--tx5), var(--ty5)) rotate(60deg);
+    }
+    20% {
+        transform: translate(var(--tx6), var(--ty6)) rotate(-60deg);
+    }
+    100% {
+        transform: translate(var(--tx7), var(--ty7)) rotate(75deg);
+    }
+    80% {
+        transform: translate(var(--tx8), var(--ty8)) rotate(-75deg);
+    }
+    90% {
+        transform: translate(var(--tx9), var(--ty9)) rotate(90deg);
+    }
+    40% {
+        transform: translate(var(--tx10), var(--ty10)) rotate(-90deg);
+    }
+}
+
+}
+
+
+@media screen and (min-width: 320px) and (max-width: 1023px) {
+
+    #bee-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh; /* Full height */
+        overflow: hidden; /* Hide overflow to keep bees within the viewport */
+        z-index: 999; /* Ensure it is below other content */
+        pointer-events: none; /* Allow clicks to pass through to other elements */
+    }
+    
+    .bee {
+        position: absolute;
+        width: 25px; /* Adjust size as needed */
+        height: 42px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        animation: buzz 5s infinite linear; /* Adjust duration for a more erratic feel */
+    }
+    
+    .bee1 {
+        background-image: url('../assets/bee1.png');
+        width: 94px; /* Adjust size as needed */
+        height: 70.5px;
+    
+    }
+    
+    .bee2 {
+        background-image: url('../assets/bee2.png');
+        width: 112px; /* Adjust size as needed */
+        height: 84px;
+    
+    }
+    
+    .bee3 {
+        background-image: url('../assets/bee3.png');
+        width: 124px; /* Adjust size as needed */
+        height: 93px;
+      
+    }
+    
+    @keyframes buzz {
+        0% {
+            transform: translate(0, 0) rotate(0deg);
+        }
+        4% {
+            transform: translate(var(--tx1), var(--ty1)) rotate(30deg);
+        }
+        7.5% {
+            transform: translate(var(--tx2), var(--ty2)) rotate(-30deg);
+        }
+        14% {
+            transform: translate(var(--tx3), var(--ty3)) rotate(45deg);
+        }
+        19% {
+            transform: translate(var(--tx4), var(--ty4)) rotate(-45deg);
+        }
+        100% {
+            transform: translate(var(--tx5), var(--ty5)) rotate(60deg);
+        }
+        20% {
+            transform: translate(var(--tx6), var(--ty6)) rotate(-60deg);
+        }
+        100% {
+            transform: translate(var(--tx7), var(--ty7)) rotate(75deg);
+        }
+        80% {
+            transform: translate(var(--tx8), var(--ty8)) rotate(-75deg);
+        }
+        90% {
+            transform: translate(var(--tx9), var(--ty9)) rotate(90deg);
+        }
+        40% {
+            transform: translate(var(--tx10), var(--ty10)) rotate(-90deg);
+        }
+    }
+
+}
+
