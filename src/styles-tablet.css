@@ -277,13 +277,12 @@
 
 .locator-search {
     grid-column: 1;
-    grid-row: 1;
+    grid-row: auto;
     height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 24px;
     position: relative;
 
 }
@@ -305,7 +304,8 @@
 
 .locator-search select {
     appearance: none;
-    margin-bottom: 48px;
+    margin-top: 24px;
+    margin-bottom: 24px;
     border: 0;
     outline: 0;
     font: inherit;
@@ -322,7 +322,6 @@
     box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
     cursor: pointer;
 
-
    
     &::-ms-expand {
       display: none;
@@ -332,10 +331,8 @@
       outline: none;
     }
   }
-  
-
-
-.modal {
+ 
+  .modal {
     display: none;
     position: fixed;
     left: 0;
@@ -350,7 +347,6 @@
     transform: translateY(100%);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-
 }
 
 .modal.open {
@@ -362,44 +358,39 @@
     padding: 10px;
     text-align: center;
     border-bottom: 1px solid #ccc;
+    position: relative; /* Add relative positioning */
+    display: flex; /* Use flexbox */
+    justify-content: space-between; /* Space items evenly */
+    align-items: center; /* Center items vertically */
 }
-
 
 .modal-body {
     padding: 48px;
     margin-bottom: 24px;
     text-align: center;
-    display: flex; /* Use Flexbox */
-    flex-direction: column;
-    justify-content: center; /* Center items horizontally */
-    align-items: center; /* Center items vertically */
-    gap: 20px; /* Spacing between salons */
+    display: flex;
+    flex-direction: row; /* Change to row for carousel */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    gap: 20px;
 }
-
 
 .modal-close {
     cursor: pointer;
-    color: #0A0A0A;
+    color: black;
     font-size: 14px;
     padding: 10px;
-    display: block;
     text-align: center;
-    border-top: 1px solid #ccc;
+    border: none;
     text-transform: uppercase;
-   
-}
-
-.modal-close .svg {
-    width: 24px;
-    height: auto;
 }
 
 .salon {
     padding: 12px;
     border-bottom: 1px solid #ccc;
     text-align: center;
-   
+    min-width: 80%; /* Ensure salons take up enough space to swipe */
 }
+
 
 .footer-nav {
     display: none;
