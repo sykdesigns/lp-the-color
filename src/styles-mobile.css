@@ -340,10 +340,8 @@
       outline: none;
     }
   }
-  
-
-
-.modal {
+ 
+  .modal {
     display: none;
     position: fixed;
     left: 0;
@@ -358,7 +356,6 @@
     transform: translateY(100%);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-
 }
 
 .modal.open {
@@ -370,46 +367,40 @@
     padding: 10px;
     text-align: center;
     border-bottom: 1px solid #ccc;
+    position: relative; /* Add relative positioning */
+    display: flex; /* Use flexbox */
+    justify-content: space-between; /* Space items evenly */
+    align-items: center; /* Center items vertically */
 }
-
 
 .modal-body {
     padding: 48px;
     margin-bottom: 24px;
     text-align: center;
-    display: flex; /* Use Flexbox */
-    flex-direction: column;
-    justify-content: center; /* Center items horizontally */
-    align-items: center; /* Center items vertically */
-    gap: 20px; /* Spacing between salons */
+    display: flex;
+    flex-direction: row; /* Change to row for carousel */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    gap: 20px;
 }
-
 
 .modal-close {
     cursor: pointer;
     color: black;
     font-size: 14px;
     padding: 10px;
-    display: block;
     text-align: center;
-    border-top: 1px solid #ccc;
+    border: none;
     text-transform: uppercase;
-   
-}
-
-.modal-close .svg {
-    width: 24px;
-    height: auto;
 }
 
 .salon {
     padding: 12px;
     border-bottom: 1px solid #ccc;
     text-align: center;
-   
-
-
+    min-width: 80%; /* Ensure salons take up enough space to swipe */
 }
+
+
 .footer-nav {
     display: none;
 }
