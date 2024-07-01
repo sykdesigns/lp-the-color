@@ -29,14 +29,10 @@ document.addEventListener('DOMContentLoaded', function() {
         salonList.innerHTML = '';
         const filteredSalons = salons.filter(salon => salon.State === state);
 
-        // Determine initial display count based on screen size
-        const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
-        const initialDisplayCount = isDesktop ? 8 : 3;
-
         if (filteredSalons.length === 0) {
             salonList.innerHTML = '<p>No salons found in this state.</p>';
         } else {
-            filteredSalons.slice(0, initialDisplayCount).forEach(salon => {
+            filteredSalons.forEach(salon => {
                 const salonDiv = document.createElement('div');
                 salonDiv.classList.add('salon');
 
@@ -62,67 +58,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     openInMaps(encodeURIComponent(salon['Address 1'] + ' ' + (salon['Address 2'] || '') + ' ' + salon.City + ' ' + salon.State + ' ' + salon['Zip Code']));
                 };
 
-
                 salonDiv.appendChild(mapsButton);
                 salonList.appendChild(salonDiv);
             });
 
-            if (filteredSalons.length > initialDisplayCount) {
-                const seeMoreDiv = document.createElement('div');
-                seeMoreDiv.classList.add('see-more');
-
-                const seeMoreButton = document.createElement('button');
-                seeMoreButton.id = 'seeMoreBtn';
-                seeMoreButton.textContent = '+ See All';
-                seeMoreButton.style.padding = '8px 16px';
-                seeMoreButton.style.fontSize = '14px';
-                seeMoreButton.style.color = 'black';
-                seeMoreButton.style.backgroundColor = 'white'; 
-                seeMoreButton.style.border = 'none';
-                seeMoreButton.style.borderRadius = '4px';
-                seeMoreButton.style.cursor = 'pointer';
-                seeMoreButton.style.marginTop = '12px';
-                seeMoreButton.style.display = 'block';
-                seeMoreButton.style.width = '100%';
-                seeMoreButton.style.textAlign = 'center';                
-
-                seeMoreButton.addEventListener('click', function() {
-                    salonList.removeChild(seeMoreDiv);
-                    filteredSalons.slice(initialDisplayCount).forEach(salon => {
-                        const salonDiv = document.createElement('div');
-                        salonDiv.classList.add('salon');
-
-                        salonDiv.innerHTML = `
-                            <h3>${salon.Salon}</h3>
-                            <p>${salon['Address 1']} ${salon['Address 2'] || ''}</p>
-                            <p>${salon.City}, ${salon.State}</p>
-                            <p>${salon.Phone}</p>
-                        `;
-
-                        const mapsButton = document.createElement('button');
-                        mapsButton.textContent = 'Open in Google Maps';
-                        mapsButton.style.padding = '8px 16px';
-                        mapsButton.style.fontSize = '14px';
-                        mapsButton.style.color = 'white';
-                        mapsButton.style.backgroundColor = 'black'; 
-                        mapsButton.style.border = 'none';
-                        mapsButton.style.borderRadius = '25px';
-                        mapsButton.style.cursor = 'pointer';
-                        mapsButton.style.marginTop = '12px';
-                        mapsButton.style.marginBottom = '12px';
-                        mapsButton.onclick = function() {
-                            openInMaps(encodeURIComponent(salon['Address 1'] + ' ' + (salon['Address 2'] || '') + ' ' + salon.City + ' ' + salon.State + ' ' + salon['Zip Code']));
-                        };
-
-                           
-
-                        salonDiv.appendChild(mapsButton);
-                        salonList.appendChild(salonDiv);
-                    });
-                });
-
-                seeMoreDiv.appendChild(seeMoreButton);
-                salonList.appendChild(seeMoreDiv);
+            if (window.innerWidth < 620) {
+                initializeCarousel(); // Initialize the carousel for mobile
             }
         }
     }
@@ -134,27 +75,53 @@ document.addEventListener('DOMContentLoaded', function() {
     window.closeModal = function() {
         salonModal.classList.remove('open');
     }
-});
 
-function openInMaps(address) {
-    const mapsUrl = `https://www.google.com/maps?q=${address}`;
-    window.open(mapsUrl, '_blank');
-}
-
-
-// accordion on mobile devices
-
-var acc = document.getElementsByClassName("accordion");
-var i;
-
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.display === "block") {
-      panel.style.display = "none";
-    } else {
-      panel.style.display = "block";
+    function openInMaps(address) {
+        const mapsUrl = `https://www.google.com/maps?q=${address}`;
+        window.open(mapsUrl, '_blank');
     }
-  });
-}
+
+    function initializeCarousel() {
+        let startX;
+        let scrollLeft;
+
+        salonList.addEventListener('mousedown', (e) => {
+            startX = e.pageX - salonList.offsetLeft;
+            scrollLeft = salonList.scrollLeft;
+            salonList.classList.add('active');
+        });
+
+        salonList.addEventListener('mouseleave', () => {
+            salonList.classList.remove('active');
+        });
+
+        salonList.addEventListener('mouseup', () => {
+            salonList.classList.remove('active');
+        });
+
+        salonList.addEventListener('mousemove', (e) => {
+            if (!salonList.classList.contains('active')) return;
+            e.preventDefault();
+            const x = e.pageX - salonList.offsetLeft;
+            const walk = (x - startX) * 3; //scroll-fast
+            salonList.scrollLeft = scrollLeft - walk;
+        });
+
+        salonList.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].pageX - salonList.offsetLeft;
+            scrollLeft = salonList.scrollLeft;
+            salonList.classList.add('active');
+        });
+
+        salonList.addEventListener('touchend', () => {
+            salonList.classList.remove('active');
+        });
+
+        salonList.addEventListener('touchmove', (e) => {
+            if (!salonList.classList.contains('active')) return;
+            const x = e.touches[0].pageX - salonList.offsetLeft;
+            const walk = (x - startX) * 3; //scroll-fast
+            salonList.scrollLeft = scrollLeft - walk;
+        });
+    }
+});
