@@ -398,21 +398,20 @@ header a:hover {
 
 .modal-header {
     padding: 10px;
-    text-align: center;
     border-bottom: 1px solid #ccc;
-    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-
-
+    
 .modal-body {
     padding: 48px;
     margin-bottom: 24px;
     text-align: center;
-    display: flex; 
-    flex-wrap: wrap; 
-    justify-content: center; 
-    align-items: center; 
-    gap: 20px; 
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 20px;
 }
 
 
@@ -421,9 +420,6 @@ header a:hover {
     color: #0A0A0A;
     font-size: 14px;
     padding: 10px;
-    display: block;
-    text-align: center;
-    border-top: 1px solid #ccc;
     text-transform: uppercase;
    
 }
@@ -434,11 +430,10 @@ header a:hover {
 }
 
 .salon {
-    margin: 10px 0; padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    min-width: 80%;
 }
 
 .footer-nav-mobile {
