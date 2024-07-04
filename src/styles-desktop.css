@@ -306,7 +306,7 @@ header a:hover {
     grid-template-columns: 400px 1fr 1fr 1fr 1fr;
     grid-template-rows: repeat(3, auto);
     padding: 32px;
-    margin-top:24px;
+
 
     
 }
